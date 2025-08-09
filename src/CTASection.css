@@ -1,0 +1,74 @@
+/* --- CTASection.css --- */
+.cta-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.cta-box {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-gray);
+  text-align: center;
+}
+
+.cta-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-dark);
+}
+
+.cta-subtitle {
+  font-size: 1rem;
+  color: #6a737d;
+  margin-bottom: 1.5rem;
+  min-height: 50px;
+}
+
+.cta-button-large {
+  display: inline-block;
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.cta-button-large:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.upgrade-button {
+  display: inline-block;
+  background-color: var(--accent-gold);
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.upgrade-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .cta-section {
+    grid-template-columns: 1fr;
+  }
+}
