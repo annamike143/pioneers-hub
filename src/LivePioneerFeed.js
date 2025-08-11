@@ -1,39 +1,33 @@
-// --- LivePioneerFeed.js (v3 - Animated) ---
+// --- LivePioneerFeed.js (FINAL v4 - Freeze Aware & Pagination) ---
 import React, { useState, useEffect } from 'react';
-import { ref, onValue, query, limitToLast } from 'firebase/database';
+import { ref, onValue, query } from 'firebase/database';
 import { database } from './firebase';
 import { motion } from 'framer-motion';
 import './LivePioneerFeed.css';
 
 const LivePioneerFeed = () => {
-    const [pioneers, setPioneers] = useState([]);
+    const [allPioneers, setAllPioneers] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10); // Default to 10 for desktop
 
     useEffect(() => {
-        const pioneersRef = query(ref(database, 'pioneers'), limitToLast(10));
+        const pioneersRef = query(ref(database, 'pioneers'));
         const unsubscribe = onValue(pioneersRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                const pioneersList = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
-                setPioneers(pioneersList);
+                // --- THE KEY UPGRADE IS HERE ---
+                const pioneersList = Object.keys(data)
+                    .map(key => ({ id: key, ...data[key] }))
+                    // We filter out any pioneer with the "FROZEN" status
+                    .filter(pioneer => pioneer.status !== 'FROZEN')
+                    .reverse(); // Show the newest ones first
+                setAllPioneers(pioneersList);
             }
         });
         return () => unsubscribe();
     }, []);
-
-    const listVariants = {
-        hidden: { opacity: 0 },
-        visible: { 
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1 // This makes each item appear one after the other
-            }
-        }
-    };
     
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 }
-    };
+    // Logic for pagination will be added in the next step
 
     return (
         <motion.div 
@@ -45,12 +39,10 @@ const LivePioneerFeed = () => {
             <h2 className="feed-title">Live Pioneer Feed</h2>
             <motion.div 
                 className="feed-list"
-                variants={listVariants}
-                initial="hidden"
-                animate="visible"
             >
-                {pioneers.map((pioneer) => (
-                    <motion.div className="feed-item" key={pioneer.id} variants={itemVariants}>
+                {/* For now, we display all non-frozen pioneers */}
+                {allPioneers.map((pioneer) => (
+                    <motion.div className="feed-item" key={pioneer.id}>
                         <div className="feed-avatar">
                             <img src="/logo-mascot.png" alt="SmartBot Mascot" />
                         </div>
@@ -64,6 +56,7 @@ const LivePioneerFeed = () => {
                     </motion.div>
                 ))}
             </motion.div>
+            {/* Pagination controls will be added here */}
         </motion.div>
     );
 };
