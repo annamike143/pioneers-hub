@@ -1,5 +1,4 @@
-/* --- The AOA-Infused StorySelling Engine v1.1 --- */
-/* --- App.css - Main Styles for The Pioneer's Hub --- */
+/* --- App.css (v2.0 - Command Center Layout) --- */
 
 :root {
   --primary-blue: #00a9e0;
@@ -11,17 +10,13 @@
   --text-dark: var(--dark-navy);
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 10px rgba(0,0,0,0.1);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .App {
-  text-align: center;
   background-color: var(--light-gray-bg);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: var(--font-body);
   color: var(--text-dark);
 }
@@ -40,9 +35,24 @@
   z-index: 1000;
 }
 
-.logo-wordmark {
-  height: 40px;
+.logo-wordmark { height: 40px; }
+
+.header-buttons { display: flex; align-items: center; gap: 1rem; }
+
+.login-button {
+  background-color: transparent;
+  color: var(--primary-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-blue);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
+.login-button:hover { background-color: var(--primary-blue); color: var(--text-light); }
 
 .cta-button {
   background-color: var(--primary-blue);
@@ -58,52 +68,39 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--shadow-md);
 }
+.cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
 
-.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+/* --- NEW COMMAND CENTER LAYOUT --- */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column for mobile */
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  padding: 2rem;
+  margin: auto;
+}
+
+/* Desktop layout (2 columns) */
+@media (min-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 2fr 1fr; /* 2 parts for main content, 1 part for sidebar */
+  }
 }
 
 .main-content {
-  width: 100%;
-  max-width: 1200px;
-  padding: 2rem;
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.live-feed-section {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.header-buttons {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.login-button {
-  background-color: transparent;
-  color: var(--primary-blue);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--primary-blue);
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
+.sidebar {
+  position: sticky;
+  top: 100px; /* Adjust based on header height + padding */
+  align-self: start; /* Makes the sticky behavior work correctly */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.login-button:hover {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-}
+/* --- END OF LAYOUT --- */

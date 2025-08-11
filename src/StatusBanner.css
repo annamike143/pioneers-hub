@@ -1,0 +1,29 @@
+/* --- StatusBanner.css --- */
+.status-banner {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.status-banner p {
+    margin: 0;
+}
+
+/* Green for Operational */
+.status-banner.operational {
+    background-color: #28a745;
+}
+
+/* Yellow for Maintenance */
+.status-banner.maintenance {
+    background-color: #ffc107;
+    color: #333;
+}
+
+/* Red for Outage */
+.status-banner.outage {
+    background-color: #dc3545;
+}

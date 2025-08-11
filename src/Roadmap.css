@@ -1,0 +1,52 @@
+/* --- Roadmap.css --- */
+.roadmap-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-gray);
+}
+
+.roadmap-title {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin: 0 0 2rem 0;
+    color: var(--dark-navy);
+}
+
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.roadmap-card {
+    text-align: center;
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.card-description {
+    color: #6a737d;
+    line-height: 1.6;
+}
+
+.roadmap-footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-weight: 700;
+    color: var(--dark-navy);
+    border-top: 1px solid var(--border-gray);
+    padding-top: 2rem;
+}
