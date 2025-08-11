@@ -1,4 +1,4 @@
-/* --- App.css (v2.0 - Command Center Layout) --- */
+/* --- App.css (FINAL v2.1 - Mobile Header Fix) --- */
 
 :root {
   --primary-blue: #00a9e0;
@@ -24,7 +24,7 @@
 .header {
   width: 100%;
   background-color: white;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem; /* Slightly less padding for mobile */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,72 +35,43 @@
   z-index: 1000;
 }
 
-.logo-wordmark { height: 40px; }
+.logo-wordmark { height: 35px; } /* Slightly smaller for mobile */
 
-.header-buttons { display: flex; align-items: center; gap: 1rem; }
+.header-buttons { display: flex; align-items: center; gap: 0.75rem; }
 
-.login-button {
-  background-color: transparent;
-  color: var(--primary-blue);
+.login-button, .cta-button {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--primary-blue);
+  font-size: 0.9rem; /* Smaller font for mobile */
+  padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
+  white-space: nowrap;
   transition: all 0.2s ease;
 }
+
+.login-button { background-color: transparent; color: var(--primary-blue); border: 2px solid var(--primary-blue); }
 .login-button:hover { background-color: var(--primary-blue); color: var(--text-light); }
 
-.cta-button {
-  background-color: var(--primary-blue);
-  color: var(--text-light);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: var(--shadow-md);
-}
+.cta-button { background-color: var(--primary-blue); color: var(--text-light); border: 2px solid var(--primary-blue); box-shadow: var(--shadow-md); }
 .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
 
-/* --- NEW COMMAND CENTER LAYOUT --- */
 .main-layout {
   display: grid;
-  grid-template-columns: 1fr; /* Default to single column for mobile */
+  grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
   max-width: 1400px;
-  padding: 2rem;
+  padding: 1.5rem;
   margin: auto;
 }
 
-/* Desktop layout (2 columns) */
 @media (min-width: 1024px) {
-  .main-layout {
-    grid-template-columns: 2fr 1fr; /* 2 parts for main content, 1 part for sidebar */
-  }
+  .main-layout { grid-template-columns: 2fr 1fr; padding: 2rem; }
+  .logo-wordmark { height: 40px; }
+  .login-button, .cta-button { font-size: 1rem; padding: 0.75rem 1.5rem; }
 }
 
-.main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.sidebar {
-  position: sticky;
-  top: 100px; /* Adjust based on header height + padding */
-  align-self: start; /* Makes the sticky behavior work correctly */
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* --- END OF LAYOUT --- */
+.main-content { display: flex; flex-direction: column; gap: 2rem; }
+.sidebar { position: sticky; top: 90px; align-self: start; display: flex; flex-direction: column; gap: 2rem; }
